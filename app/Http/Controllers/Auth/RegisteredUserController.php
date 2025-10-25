@@ -19,8 +19,8 @@ class RegisteredUserController extends Controller
      */
     public function create(): View
     {
-/*         return view('auth.register');
- */          return view('user.user');
+       /*  return view('auth.register'); */
+          return view('user.user');
   }
 
     /**
@@ -34,12 +34,14 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'user_type' => ['required', 'in:1,2,3'],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'user_type' => $request->user_type,
         ]);
 
         event(new Registered($user));
