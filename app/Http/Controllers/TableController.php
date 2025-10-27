@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Table;
 use App\Models\TableRow;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class TableController extends Controller
@@ -39,20 +40,41 @@ class TableController extends Controller
         }
     }
 
-    // Show table details with rows
+
     public function show($id)
     {
         try {
-            // Find the table by ID
             $table = Table::findOrFail($id);
 
-            // Get all rows belonging to this table
-            $rows = TableRow::where('table_id', $id)->orderBy('id', 'asc')->get();
+            $shippingAgents = User::where(['status' => 'ACTIVE', 'user_type' => 2])
+                ->orderBy('name', 'asc')
+                ->get();
 
-            // Attach rows to table object for easy access in view
+            $clearanceAgents = User::where(['status' => 'ACTIVE', 'user_type' => 3])
+                ->orderBy('name', 'asc')
+                ->get();
+
+            // Load rows with the agent relationships
+            $rows = '';
+            if (auth()->user()->user_type == 1) {
+                $rows = TableRow::where('table_id', $id)
+                    ->with(['shippingAgent', 'clearanceAgent'])  // Add this line
+                    ->orderBy('id', 'asc')
+                    ->get();
+            } elseif (auth()->user()->user_type == 2) {
+                $rows = TableRow::where(['table_id' => $id, 'shipping_agent_id' => auth()->user()->id])
+                    ->with(['shippingAgent', 'clearanceAgent'])  // Add this line
+                    ->orderBy('id', 'asc')
+                    ->get();
+            } elseif (auth()->user()->user_type == 3) {
+                $rows = TableRow::where(['table_id' => $id, 'clearance_agent_id' => auth()->user()->id])
+                    ->with(['shippingAgent', 'clearanceAgent'])  // Add this line
+                    ->orderBy('id', 'asc')
+                    ->get();
+            }
             $table->rows = $rows;
 
-            return view('table-show', compact('table'));
+            return view('table-show', compact('table', 'shippingAgents', 'clearanceAgents'));
         } catch (\Exception $e) {
             return redirect()->route('dashboard')->with('error', 'Table not found!');
         }
@@ -116,6 +138,9 @@ class TableController extends Controller
                 'revised_etd' => 'nullable|date',
                 'eta' => 'nullable|date',
                 'revised_eta' => 'nullable|date',
+                'cleared_date' => 'nullable|date',
+                'clearance_agent_id' => 'nullable|integer',
+                'shipping_agent_id' => 'nullable|integer',
             ]);
 
             $validated['table_id'] = $tableId;
@@ -151,6 +176,9 @@ class TableController extends Controller
                 'revised_etd' => 'nullable|date',
                 'eta' => 'nullable|date',
                 'revised_eta' => 'nullable|date',
+                'cleared_date' => 'nullable|date',
+                'clearance_agent_id' => 'nullable|integer',
+                'shipping_agent_id' => 'nullable|integer',
             ]);
 
             $row->update($validated);

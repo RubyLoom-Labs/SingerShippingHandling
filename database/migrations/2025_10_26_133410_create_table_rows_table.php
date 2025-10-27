@@ -29,6 +29,8 @@ return new class extends Migration
             $table->date('clearing_agent')->nullable();
             $table->date('cusdec_ref')->nullable();
             $table->date('reason_for_kpi_failure')->nullable();
+            $table->tinyInteger('clearance_agent_id')->nullable();
+            $table->tinyInteger('shipping_agent_id')->nullable();
             $table->timestamps();
         });
     }

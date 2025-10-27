@@ -26,6 +26,8 @@ class TableRow extends Model
         'clearing_agent',
         'cusdec_ref',
         'reason_for_kpi_failure',
+        'clearance_agent_id',
+        'shipping_agent_id'
     ];
 
     protected $casts = [
@@ -33,10 +35,20 @@ class TableRow extends Model
         'revised_etd' => 'date',
         'eta' => 'date',
         'revised_eta' => 'date',
+        'cleared_date' => 'datetime'
     ];
 
     public function table()
     {
         return $this->belongsTo(Table::class);
+    }
+    public function shippingAgent()
+    {
+        return $this->belongsTo(User::class, 'shipping_agent_id');
+    }
+
+    public function clearanceAgent()
+    {
+        return $this->belongsTo(User::class, 'clearance_agent_id');
     }
 }

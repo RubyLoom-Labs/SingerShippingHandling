@@ -86,17 +86,19 @@
                     <!-- Header with Create Button -->
                     <div class="flex justify-between items-center mb-6">
                         <h3 class="text-2xl font-bold text-gray-800">Tables</h3>
-                        <button type="button" onclick="openModal()"
-                            style="background-color: #2563eb; color: white; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 600; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); transition: all 0.2s;"
-                            onmouseover="this.style.backgroundColor='#1d4ed8'; this.style.transform='scale(1.05)'"
-                            onmouseout="this.style.backgroundColor='#2563eb'; this.style.transform='scale(1)'">
-                            <svg style="width: 1.25rem; height: 1.25rem; display: inline; margin-right: 0.5rem; vertical-align: middle;"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M12 4v16m8-8H4"></path>
-                            </svg>
-                            <span style="vertical-align: middle;">Create New Table</span>
-                        </button>
+                        @if (auth()->user()->user_type == 1)
+                            <button type="button" onclick="openModal()"
+                                style="background-color: #2563eb; color: white; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 600; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); transition: all 0.2s;"
+                                onmouseover="this.style.backgroundColor='#1d4ed8'; this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.backgroundColor='#2563eb'; this.style.transform='scale(1)'">
+                                <svg style="width: 1.25rem; height: 1.25rem; display: inline; margin-right: 0.5rem; vertical-align: middle;"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                <span style="vertical-align: middle;">Create New Table</span>
+                            </button>
+                        @endif
                     </div>
 
                     <!-- Table Cards Grid -->
@@ -107,28 +109,32 @@
                                 <div class="flex justify-between items-start mb-2">
                                     <h4 class="text-xl font-semibold text-gray-800 flex-1">{{ $table->name }}</h4>
                                     <div class="flex gap-2 ml-2">
-                                        <button
-                                            onclick="event.stopPropagation(); openEditModal({{ $table->id }}, '{{ addslashes($table->name) }}', '{{ addslashes($table->description ?? '') }}')"
-                                            class="text-blue-600 hover:text-blue-800 transition duration-200"
-                                            title="Edit">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
-                                                </path>
-                                            </svg>
-                                        </button>
-                                        <button
-                                            onclick="event.stopPropagation(); openDeleteModal({{ $table->id }}, '{{ addslashes($table->name) }}')"
-                                            class="text-red-600 hover:text-red-800 transition duration-200"
-                                            title="Delete">
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
-                                                </path>
-                                            </svg>
-                                        </button>
+                                        @if (auth()->user()->user_type == 1)
+                                            <button
+                                                onclick="event.stopPropagation(); openEditModal({{ $table->id }}, '{{ addslashes($table->name) }}', '{{ addslashes($table->description ?? '') }}')"
+                                                class="text-blue-600 hover:text-blue-800 transition duration-200"
+                                                title="Edit">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                            <button
+                                                onclick="event.stopPropagation(); openDeleteModal({{ $table->id }}, '{{ addslashes($table->name) }}')"
+                                                class="text-red-600 hover:text-red-800 transition duration-200"
+                                                title="Delete">
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2"
+                                                        d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                    </path>
+                                                </svg>
+                                            </button>
+                                        @endif
                                     </div>
                                 </div>
                                 @if ($table->description)
