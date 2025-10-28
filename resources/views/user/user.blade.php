@@ -94,9 +94,9 @@
             </div>
 
             <!-- Users Cards Grid -->
-            <div id="usersGrid" class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div id="usersGrid" class="px-6 pb-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @forelse($users as $user)
-                    <div class="user-card cursor-pointer bg-white border border-gray-200 rounded-lg shadow-md p-6 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
+                    <div class="user-card cursor-pointer bg-white border border-gray-200 rounded-lg shadow-md transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-xl"
                         data-user-name="{{ strtolower($user->name) }}"
                         data-user-email="{{ strtolower($user->email) }}">
                         <div class="p-6">
