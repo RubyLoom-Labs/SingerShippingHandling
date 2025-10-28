@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TableController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -26,11 +27,17 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/tables/{tableId}/rows/{rowId}', [TableController::class, 'destroyRow'])->name('table.row.delete');
 });
 
+Route::middleware('auth')->group(function () {
+    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::post('/register-user', [UserController::class, 'store'])->name('register-user');
+    Route::get('/users/{id}/edit', [UserController::class, 'edit']);
+    Route::put('/users/{id}', [UserController::class, 'update']);
+    Route::delete('/users/{id}', [UserController::class, 'destroy']);
+});
 
-
-Route::post('/register-user', [RegisteredUserController::class, 'store'])
+/* Route::post('/register-user', [RegisteredUserController::class, 'store'])
     ->middleware('auth')
-    ->name('register-user');
+    ->name('register-user'); */
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
