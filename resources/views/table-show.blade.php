@@ -21,94 +21,148 @@
                     <div class="flex justify-between items-center mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-gray-800">{{ $table->name }}</h3>
-                            @if($table->description)
+                            @if ($table->description)
                                 <p class="text-sm text-gray-600 mt-1">{{ $table->description }}</p>
                             @endif
                         </div>
-                        @if(auth()->user()->user_type == 1)
-                        <button onclick="addNewRow()"
-                            style="background-color: #2563eb; color: white; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 600; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); transition: all 0.2s;"
-                            onmouseover="this.style.backgroundColor='#1d4ed8'; this.style.transform='scale(1.05)'"
-                            onmouseout="this.style.backgroundColor='#2563eb'; this.style.transform='scale(1)'">
-                            <svg style="width: 1.25rem; height: 1.25rem; display: inline; margin-right: 0.5rem; vertical-align: middle;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4"></path>
-                            </svg>
-                            <span style="vertical-align: middle;">Add New Row</span>
-                        </button>
+                        @if (auth()->user()->user_type == 1)
+                            <button onclick="addNewRow()"
+                                style="background-color: #2563eb; color: white; padding: 0.625rem 1.25rem; border-radius: 0.5rem; font-weight: 600; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1); transition: all 0.2s;"
+                                onmouseover="this.style.backgroundColor='#1d4ed8'; this.style.transform='scale(1.05)'"
+                                onmouseout="this.style.backgroundColor='#2563eb'; this.style.transform='scale(1)'">
+                                <svg style="width: 1.25rem; height: 1.25rem; display: inline; margin-right: 0.5rem; vertical-align: middle;"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 4v16m8-8H4"></path>
+                                </svg>
+                                <span style="vertical-align: middle;">Add New Row</span>
+                            </button>
                         @endif
                     </div>
 
                     <!-- Table -->
                     <div class="overflow-x-auto">
-                        <table class="w-full divide-y divide-gray-200 border border-gray-300 table-fixed" id="dataTable">
+                        <table class="w-full divide-y divide-gray-200 border border-gray-300 table-fixed"
+                            id="dataTable">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 60px;">No</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 180px;">Category</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 180px;">Part No</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 180px;">Brand Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 120px;">Unit</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 180px;">PO Number</th>
-                                    @if(auth()->user()->user_type == 1)
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 200px;">Shipping Agent</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 200px;">Clearance Agent</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        style="width: 60px;">No</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        style="width: 180px;">Category</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        style="width: 180px;">Part No</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        style="width: 180px;">Brand Name</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        style="width: 120px;">Unit</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        style="width: 180px;">PO Number</th>
+                                    @if (auth()->user()->user_type == 1)
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 200px;">Shipping Agent</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 200px;">Clearance Agent</th>
                                     @endif
-                                    @if(auth()->user()->user_type != 3)
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 150px;">Vsl</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 180px;">BL Num</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 150px;">ETD</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 150px;">Revised ETD</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 150px;">ETA</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 150px;">Revised ETA</th>
+                                    @if (auth()->user()->user_type != 3)
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 150px;">Vsl</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 180px;">BL Num</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 150px;">ETD</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 150px;">Revised ETD</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 150px;">ETA</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 150px;">Revised ETA</th>
                                     @endif
-                                    @if(auth()->user()->user_type != 2)
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 150px;">Cleared Date</th>
+                                    @if (auth()->user()->user_type != 2)
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                            style="width: 150px;">Cleared Date</th>
                                     @endif
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap" style="width: 120px;">Actions</th>
+                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        style="width: 120px;">Actions</th>
                                 </tr>
                             </thead>
                             <tbody class="bg-white divide-y divide-gray-200" id="tableBody">
                                 @forelse($table->rows as $index => $row)
-                                    <tr data-row-id="{{ $row->id }}" class="hover:bg-gray-50 cursor-pointer" ondblclick="editRow(this)">
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap" style="width: 60px;">{{ $index + 1 }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="category">{{ $row->category }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="part_no">{{ $row->part_no }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="brand_name">{{ $row->brand_name }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 120px;" data-field="unit">{{ $row->unit }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="po_number">{{ $row->po_number }}</td>
-                                        @if(auth()->user()->user_type == 1)
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;" data-field="shipping_agent_id" data-agent-id="{{ $row->shipping_agent_id ?? '' }}">{{ $row->shippingAgent->name ?? '' }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;" data-field="clearance_agent_id" data-agent-id="{{ $row->clearance_agent_id ?? '' }}">{{ $row->clearanceAgent->name ?? '' }}</td>
+                                    <tr data-row-id="{{ $row->id }}" class="hover:bg-gray-50 cursor-pointer"
+                                        ondblclick="editRow(this)">
+                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                            style="width: 60px;">{{ $index + 1 }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                            data-field="category">{{ $row->category }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                            data-field="part_no">{{ $row->part_no }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                            data-field="brand_name">{{ $row->brand_name }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 120px;"
+                                            data-field="unit">{{ $row->unit }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                            data-field="po_number">{{ $row->po_number }}</td>
+                                        @if (auth()->user()->user_type == 1)
+                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;"
+                                                data-field="shipping_agent_id"
+                                                data-agent-id="{{ $row->shipping_agent_id ?? '' }}">
+                                                {{ $row->shippingAgent->name ?? '' }}</td>
+                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;"
+                                                data-field="clearance_agent_id"
+                                                data-agent-id="{{ $row->clearance_agent_id ?? '' }}">
+                                                {{ $row->clearanceAgent->name ?? '' }}</td>
                                         @endif
-                                        @if(auth()->user()->user_type != 3)
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="vsl">{{ $row->vsl }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="bl_num">{{ $row->bl_num }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap" style="width: 150px;" data-field="etd">{{ $row->etd ? $row->etd->format('Y-m-d') : '' }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap" style="width: 150px;" data-field="revised_etd">{{ $row->revised_etd ? $row->revised_etd->format('Y-m-d') : '' }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap" style="width: 150px;" data-field="eta">{{ $row->eta ? $row->eta->format('Y-m-d') : '' }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap" style="width: 150px;" data-field="revised_eta">{{ $row->revised_eta ? $row->revised_eta->format('Y-m-d') : '' }}</td>
+                                        @if (auth()->user()->user_type != 3)
+                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;"
+                                                data-field="vsl">{{ $row->vsl }}</td>
+                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                                data-field="bl_num">{{ $row->bl_num }}</td>
+                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                                style="width: 150px;" data-field="etd">
+                                                {{ $row->etd ? $row->etd->format('Y-m-d') : '' }}</td>
+                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                                style="width: 150px;" data-field="revised_etd">
+                                                {{ $row->revised_etd ? $row->revised_etd->format('Y-m-d') : '' }}</td>
+                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                                style="width: 150px;" data-field="eta">
+                                                {{ $row->eta ? $row->eta->format('Y-m-d') : '' }}</td>
+                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                                style="width: 150px;" data-field="revised_eta">
+                                                {{ $row->revised_eta ? $row->revised_eta->format('Y-m-d') : '' }}</td>
                                         @endif
-                                        @if(auth()->user()->user_type != 2)
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap" style="width: 150px;" data-field="cleared_date">{{ $row->cleared_date ? $row->cleared_date->format('Y-m-d') : '' }}</td>
+                                        @if (auth()->user()->user_type != 2)
+                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                                style="width: 150px;" data-field="cleared_date">
+                                                {{ $row->cleared_date ? $row->cleared_date->format('Y-m-d') : '' }}
+                                            </td>
                                         @endif
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap text-center" style="width: 120px;">
-                                            @if(auth()->user()->user_type == 1)
-                                            <button onclick="event.stopPropagation(); deleteRow({{ $row->id }})" class="text-red-600 hover:text-red-800 inline-flex items-center justify-center" title="Delete">
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
-                                                </svg>
-                                            </button>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap text-center"
+                                            style="width: 120px;">
+                                            @if (auth()->user()->user_type == 1)
+                                                <button
+                                                    onclick="event.stopPropagation(); deleteRow({{ $row->id }})"
+                                                    class="text-red-600 hover:text-red-800 inline-flex items-center justify-center"
+                                                    title="Delete">
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2"
+                                                            d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16">
+                                                        </path>
+                                                    </svg>
+                                                </button>
                                             @else
-                                            <span class="text-gray-400">-</span>
+                                                <span class="text-gray-400">-</span>
                                             @endif
                                         </td>
                                     </tr>
                                 @empty
                                     <tr id="emptyRow">
-                                        <td colspan="15" class="px-6 py-8 text-center text-gray-500 border border-gray-300">
+                                        <td colspan="15"
+                                            class="px-6 py-8 text-center text-gray-500 border border-gray-300">
                                             No rows added yet.
-                                            @if(auth()->user()->user_type == 1)
-                                            Click "Add New Row" to get started.
+                                            @if (auth()->user()->user_type == 1)
+                                                Click "Add New Row" to get started.
                                             @endif
                                         </td>
                                     </tr>
@@ -131,6 +185,7 @@
                 transform: translateY(-20px);
                 opacity: 0;
             }
+
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -147,11 +202,13 @@
             font-size: 0.875rem;
         }
 
-        #dataTable td, #dataTable th {
+        #dataTable td,
+        #dataTable th {
             border-color: #d1d5db;
         }
 
-        input:disabled, select:disabled {
+        input:disabled,
+        select:disabled {
             background-color: #f3f4f6;
             cursor: not-allowed;
             opacity: 0.6;
@@ -169,23 +226,30 @@
 
         // Define editable fields based on user type
         const editableFields = {
-            1: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'shipping_agent_id', 'clearance_agent_id', 'vsl', 'bl_num', 'etd', 'revised_etd', 'eta', 'revised_eta'],
+            1: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'shipping_agent_id', 'clearance_agent_id',
+                'vsl', 'bl_num', 'etd', 'revised_etd', 'eta', 'revised_eta', 'cleared_date'
+            ],
             2: ['vsl', 'bl_num', 'etd', 'revised_etd', 'eta', 'revised_eta'],
             3: ['cleared_date']
         };
 
         const visibleFields = {
-            1: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'shipping_agent_id', 'clearance_agent_id', 'vsl', 'bl_num', 'etd', 'revised_etd', 'eta', 'revised_eta'],
-            2: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'vsl', 'bl_num', 'etd', 'revised_etd', 'eta', 'revised_eta'],
+            1: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'shipping_agent_id', 'clearance_agent_id',
+                'vsl', 'bl_num', 'etd', 'revised_etd', 'eta', 'revised_eta', 'cleared_date'
+            ],
+            2: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'vsl', 'bl_num', 'etd', 'revised_etd', 'eta',
+                'revised_eta'
+            ],
             3: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'cleared_date']
         };
 
         function showMessage(message, type = 'success') {
             const container = document.getElementById('messageContainer');
-            const bgColor = type === 'success' ? 'bg-green-50 border-green-500 text-green-800' : 'bg-red-50 border-red-500 text-red-800';
-            const icon = type === 'success'
-                ? '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>'
-                : '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
+            const bgColor = type === 'success' ? 'bg-green-50 border-green-500 text-green-800' :
+                'bg-red-50 border-red-500 text-red-800';
+            const icon = type === 'success' ?
+                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>' :
+                '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"></path>';
 
             const messageDiv = document.createElement('div');
             messageDiv.className = `mb-4 ${bgColor} border-l-4 p-4 rounded-lg shadow-md animate-slide-in`;
@@ -249,7 +313,8 @@
                 <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="revised_etd"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
                 <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="eta"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
                 <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="revised_eta"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap text-center" style="width: 120px;">
+                               <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="cleared_date"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
+ <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap text-center" style="width: 120px;">
                     <button onclick="saveRow(this)" class="text-green-600 hover:text-green-800 mr-2 inline-flex items-center" title="Save">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
@@ -290,19 +355,23 @@
                         shippingAgents.find(a => a.name === cell.textContent.trim())?.id : '';
                     originalData[field] = currentId || '';
                     const disabled = isEditable ? '' : ' disabled';
-                    cell.innerHTML = `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"${disabled}>${createDropdownOptions(shippingAgents, currentId)}</select>`;
+                    cell.innerHTML =
+                        `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"${disabled}>${createDropdownOptions(shippingAgents, currentId)}</select>`;
                 } else if (field === 'clearance_agent_id') {
                     const currentId = cell.textContent.trim() ?
                         clearanceAgents.find(a => a.name === cell.textContent.trim())?.id : '';
                     originalData[field] = currentId || '';
                     const disabled = isEditable ? '' : ' disabled';
-                    cell.innerHTML = `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"${disabled}>${createDropdownOptions(clearanceAgents, currentId)}</select>`;
+                    cell.innerHTML =
+                        `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"${disabled}>${createDropdownOptions(clearanceAgents, currentId)}</select>`;
                 } else {
                     originalData[field] = cell.textContent.trim();
-                    const isDateField = ['etd', 'revised_etd', 'eta', 'revised_eta', 'cleared_date'].includes(field);
+                    const isDateField = ['etd', 'revised_etd', 'eta', 'revised_eta', 'cleared_date'].includes(
+                        field);
                     const inputType = isDateField ? 'date' : 'text';
                     const disabled = isEditable ? '' : ' disabled';
-                    cell.innerHTML = `<input type="${inputType}" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" value="${originalData[field]}"${disabled} />`;
+                    cell.innerHTML =
+                        `<input type="${inputType}" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" value="${originalData[field]}"${disabled} />`;
                 }
             });
 
@@ -355,9 +424,9 @@
             });
 
             try {
-                const url = isNew
-                    ? `/tables/${tableId}/rows`
-                    : `/tables/${tableId}/rows/${rowId}`;
+                const url = isNew ?
+                    `/tables/${tableId}/rows` :
+                    `/tables/${tableId}/rows/${rowId}`;
 
                 const method = isNew ? 'POST' : 'PUT';
 

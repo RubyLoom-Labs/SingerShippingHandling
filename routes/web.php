@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TableController;
 use App\Http\Controllers\UserController;
+use Illuminate\Container\Attributes\Auth;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,7 +29,12 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/users', [UserController::class, 'index'])->name('user.index');
+    Route::get('/users', function () {
+        if (auth()->user()->user_type != 1) {
+            abort(403, 'Unauthorized');
+        }
+        return app(\App\Http\Controllers\UserController::class)->index(request());
+    })->name('user.index');
     Route::post('/register-user', [UserController::class, 'store'])->name('register-user');
     Route::get('/users/{id}/edit', [UserController::class, 'edit']);
     Route::put('/users/{id}', [UserController::class, 'update']);
