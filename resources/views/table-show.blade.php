@@ -46,43 +46,41 @@
                             id="dataTable">
                             <thead class="bg-gray-50">
                                 <tr>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                         style="width: 60px;">No</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                         style="width: 180px;">Category</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                         style="width: 180px;">Part No</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                         style="width: 180px;">Brand Name</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                         style="width: 120px;">Unit</th>
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                         style="width: 180px;">PO Number</th>
                                     @if (auth()->user()->user_type == 1)
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 200px;">Shipping Agent</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 200px;">Clearance Agent</th>
                                     @endif
-                                    @if (auth()->user()->user_type != 3)
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 150px;">Vsl</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 180px;">BL Num</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 150px;">ETD</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 150px;">Revised ETD</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 150px;">ETA</th>
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 150px;">Revised ETA</th>
-                                    @endif
                                     @if (auth()->user()->user_type != 2)
-                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                        <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                             style="width: 150px;">Cleared Date</th>
                                     @endif
-                                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
+                                    <th class="px-6 py-3 text-center text-xs font-medium text-gray-500 uppercase tracking-wider border border-gray-300 whitespace-nowrap"
                                         style="width: 120px;">Actions</th>
                                 </tr>
                             </thead>
@@ -90,48 +88,46 @@
                                 @forelse($table->rows as $index => $row)
                                     <tr data-row-id="{{ $row->id }}" class="hover:bg-gray-50 cursor-pointer"
                                         ondblclick="editRow(this)">
-                                        <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center whitespace-nowrap"
                                             style="width: 60px;">{{ $index + 1 }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;"
                                             data-field="category">{{ $row->category }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;"
                                             data-field="part_no">{{ $row->part_no }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;"
                                             data-field="brand_name">{{ $row->brand_name }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 120px;"
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 120px;"
                                             data-field="unit">{{ $row->unit }}</td>
-                                        <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;"
                                             data-field="po_number">{{ $row->po_number }}</td>
                                         @if (auth()->user()->user_type == 1)
-                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;"
+                                            <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 200px;"
                                                 data-field="shipping_agent_id"
                                                 data-agent-id="{{ $row->shipping_agent_id ?? '' }}">
                                                 {{ $row->shippingAgent->name ?? '' }}</td>
-                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;"
+                                            <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 200px;"
                                                 data-field="clearance_agent_id"
                                                 data-agent-id="{{ $row->clearance_agent_id ?? '' }}">
                                                 {{ $row->clearanceAgent->name ?? '' }}</td>
                                         @endif
-                                        @if (auth()->user()->user_type != 3)
-                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;"
-                                                data-field="vsl">{{ $row->vsl }}</td>
-                                            <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;"
-                                                data-field="bl_num">{{ $row->bl_num }}</td>
-                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
-                                                style="width: 150px;" data-field="etd">
-                                                {{ $row->etd ? $row->etd->format('Y-m-d') : '' }}</td>
-                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
-                                                style="width: 150px;" data-field="revised_etd">
-                                                {{ $row->revised_etd ? $row->revised_etd->format('Y-m-d') : '' }}</td>
-                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
-                                                style="width: 150px;" data-field="eta">
-                                                {{ $row->eta ? $row->eta->format('Y-m-d') : '' }}</td>
-                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
-                                                style="width: 150px;" data-field="revised_eta">
-                                                {{ $row->revised_eta ? $row->revised_eta->format('Y-m-d') : '' }}</td>
-                                        @endif
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 150px;"
+                                            data-field="vsl">{{ $row->vsl }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;"
+                                            data-field="bl_num">{{ $row->bl_num }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center whitespace-nowrap"
+                                            style="width: 150px;" data-field="etd">
+                                            {{ $row->etd ? $row->etd->format('Y-m-d') : '' }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center whitespace-nowrap"
+                                            style="width: 150px;" data-field="revised_etd">
+                                            {{ $row->revised_etd ? $row->revised_etd->format('Y-m-d') : '' }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center whitespace-nowrap"
+                                            style="width: 150px;" data-field="eta">
+                                            {{ $row->eta ? $row->eta->format('Y-m-d') : '' }}</td>
+                                        <td class="px-6 py-4 border border-gray-300 text-sm text-center whitespace-nowrap"
+                                            style="width: 150px;" data-field="revised_eta">
+                                            {{ $row->revised_eta ? $row->revised_eta->format('Y-m-d') : '' }}</td>
                                         @if (auth()->user()->user_type != 2)
-                                            <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap"
+                                            <td class="px-6 py-4 border border-gray-300 text-sm text-center whitespace-nowrap"
                                                 style="width: 150px;" data-field="cleared_date">
                                                 {{ $row->cleared_date ? $row->cleared_date->format('Y-m-d') : '' }}
                                             </td>
@@ -209,9 +205,53 @@
 
         input:disabled,
         select:disabled {
-            background-color: #f3f4f6;
+            background-color: #f9fafb;
             cursor: not-allowed;
-            opacity: 0.6;
+            opacity: 1;
+            color: #111827;
+            -webkit-text-fill-color: #111827;
+        }
+
+        /* Fix for date input width in disabled state */
+        input[type="date"]:disabled {
+            min-width: 140px;
+            width: 100%;
+        }
+
+        /* Ensure table cells don't overflow */
+        #dataTable td {
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Make sure inputs and selects fit within their cells */
+        #dataTable td input,
+        #dataTable td select {
+            max-width: 100%;
+            box-sizing: border-box;
+        }
+
+        /* Specific styling for date fields to prevent overflow */
+        #dataTable td input[type="date"] {
+            font-size: 0.875rem;
+            text-align: center;
+        }
+
+        /* Center align all text inputs and selects */
+        #dataTable td input[type="text"],
+        #dataTable td select {
+            text-align: center;
+        }
+
+        /* Prevent text wrapping in date cells */
+        #dataTable td[data-field="etd"],
+        #dataTable td[data-field="revised_etd"],
+        #dataTable td[data-field="eta"],
+        #dataTable td[data-field="revised_eta"],
+        #dataTable td[data-field="cleared_date"] {
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: center;
         }
     </style>
 
@@ -240,8 +280,12 @@
             2: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'vsl', 'bl_num', 'etd', 'revised_etd', 'eta',
                 'revised_eta'
             ],
-            3: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'cleared_date']
+            3: ['category', 'part_no', 'brand_name', 'unit', 'po_number', 'vsl', 'bl_num', 'etd', 'revised_etd', 'eta',
+                'revised_eta', 'cleared_date'
+            ]
         };
+
+        let currentEditingRow = null;
 
         function showMessage(message, type = 'success') {
             const container = document.getElementById('messageContainer');
@@ -282,10 +326,29 @@
             return options;
         }
 
+        // Click outside to save
+        document.addEventListener('click', function(event) {
+            if (currentEditingRow && !currentEditingRow.contains(event.target)) {
+                const isNew = currentEditingRow.dataset.isNew === 'true';
+                if (isNew) {
+                    // For new rows, save automatically
+                    saveRowAuto(currentEditingRow);
+                } else {
+                    // For existing rows, save changes
+                    saveRowAuto(currentEditingRow);
+                }
+            }
+        });
+
         function addNewRow() {
             if (userType !== 1) {
                 showMessage('You do not have permission to add rows', 'error');
                 return;
+            }
+
+            // Save any currently editing row first
+            if (currentEditingRow) {
+                saveRowAuto(currentEditingRow);
             }
 
             const emptyRow = document.getElementById('emptyRow');
@@ -299,27 +362,22 @@
             newRow.dataset.isNew = 'true';
 
             newRow.innerHTML = `
-                <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap" style="width: 60px;">${rowCount}</td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="category"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="part_no"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="brand_name"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 120px;" data-field="unit"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="po_number"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;" data-field="shipping_agent_id"><select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">${createDropdownOptions(shippingAgents)}</select></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 200px;" data-field="clearance_agent_id"><select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500">${createDropdownOptions(clearanceAgents)}</select></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="vsl"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 180px;" data-field="bl_num"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="etd"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="revised_etd"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="eta"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="revised_eta"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
-                               <td class="px-6 py-4 border border-gray-300 text-sm" style="width: 150px;" data-field="cleared_date"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" /></td>
- <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap text-center" style="width: 120px;">
-                    <button onclick="saveRow(this)" class="text-green-600 hover:text-green-800 mr-2 inline-flex items-center" title="Save">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                        </svg>
-                    </button>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center whitespace-nowrap" style="width: 60px;">${rowCount}</td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;" data-field="category"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;" data-field="part_no"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;" data-field="brand_name"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 120px;" data-field="unit"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;" data-field="po_number"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 200px;" data-field="shipping_agent_id"><select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">${createDropdownOptions(shippingAgents)}</select></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 200px;" data-field="clearance_agent_id"><select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center">${createDropdownOptions(clearanceAgents)}</select></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 150px;" data-field="vsl"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 180px;" data-field="bl_num"><input type="text" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 150px;" data-field="etd"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 150px;" data-field="revised_etd"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 150px;" data-field="eta"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 150px;" data-field="revised_eta"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm text-center" style="width: 150px;" data-field="cleared_date"><input type="date" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" /></td>
+                <td class="px-6 py-4 border border-gray-300 text-sm whitespace-nowrap text-center" style="width: 120px;">
                     <button onclick="cancelEdit(this)" class="text-gray-600 hover:text-gray-800 inline-flex items-center" title="Cancel">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -329,11 +387,23 @@
             `;
 
             tbody.appendChild(newRow);
+            currentEditingRow = newRow;
+
+            // Prevent the click event from bubbling up
+            newRow.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
+
             newRow.querySelector('input').focus();
         }
 
         function editRow(row) {
             if (row.classList.contains('editing')) return;
+
+            // Save any currently editing row first
+            if (currentEditingRow && currentEditingRow !== row) {
+                saveRowAuto(currentEditingRow);
+            }
 
             const cells = row.querySelectorAll('td[data-field]');
             const originalData = {};
@@ -356,14 +426,14 @@
                     originalData[field] = currentId || '';
                     const disabled = isEditable ? '' : ' disabled';
                     cell.innerHTML =
-                        `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"${disabled}>${createDropdownOptions(shippingAgents, currentId)}</select>`;
+                        `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center"${disabled}>${createDropdownOptions(shippingAgents, currentId)}</select>`;
                 } else if (field === 'clearance_agent_id') {
                     const currentId = cell.textContent.trim() ?
                         clearanceAgents.find(a => a.name === cell.textContent.trim())?.id : '';
                     originalData[field] = currentId || '';
                     const disabled = isEditable ? '' : ' disabled';
                     cell.innerHTML =
-                        `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"${disabled}>${createDropdownOptions(clearanceAgents, currentId)}</select>`;
+                        `<select class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center"${disabled}>${createDropdownOptions(clearanceAgents, currentId)}</select>`;
                 } else {
                     originalData[field] = cell.textContent.trim();
                     const isDateField = ['etd', 'revised_etd', 'eta', 'revised_eta', 'cleared_date'].includes(
@@ -371,20 +441,21 @@
                     const inputType = isDateField ? 'date' : 'text';
                     const disabled = isEditable ? '' : ' disabled';
                     cell.innerHTML =
-                        `<input type="${inputType}" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" value="${originalData[field]}"${disabled} />`;
+                        `<input type="${inputType}" class="w-full px-3 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 text-center" value="${originalData[field]}"${disabled} />`;
                 }
             });
 
             row.dataset.originalData = JSON.stringify(originalData);
             row.classList.add('editing');
+            currentEditingRow = row;
+
+            // Prevent the click event from bubbling up
+            row.addEventListener('click', function(event) {
+                event.stopPropagation();
+            });
 
             const actionsCell = row.querySelector('td:last-child');
             actionsCell.innerHTML = `
-                <button onclick="saveRow(this)" class="text-green-600 hover:text-green-800 mr-2 inline-flex items-center" title="Save">
-                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
-                    </svg>
-                </button>
                 <button onclick="cancelEdit(this)" class="text-gray-600 hover:text-gray-800 inline-flex items-center" title="Cancel">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
@@ -393,8 +464,7 @@
             `;
         }
 
-        async function saveRow(button) {
-            const row = button.closest('tr');
+        async function saveRowAuto(row) {
             const isNew = row.dataset.isNew === 'true';
             const rowId = row.dataset.rowId;
 
@@ -459,6 +529,7 @@
 
             if (row.dataset.isNew === 'true') {
                 row.remove();
+                currentEditingRow = null;
 
                 const tbody = document.getElementById('tableBody');
                 if (tbody.children.length === 0) {
@@ -499,6 +570,7 @@
             row.classList.remove('editing');
             row.removeAttribute('ondblclick');
             row.setAttribute('ondblclick', 'editRow(this)');
+            currentEditingRow = null;
 
             const actionsCell = row.querySelector('td:last-child');
             const rowId = row.dataset.rowId;
